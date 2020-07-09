@@ -524,7 +524,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotateSpeed: 20
   angleOffSet: -90
-  gun: {fileID: 1354437866}
 --- !u!1 &1573911271
 GameObject:
   m_ObjectHideFlags: 0
@@ -781,6 +780,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gun: {fileID: 272591367}
+  bullet: {fileID: 4899159031067599373, guid: 6261270110542664f88e8d4211171da6, type: 3}
   bulletCapacity: 3
   bulletInMagasine: 3
   recoilForce: 25

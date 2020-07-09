@@ -12,7 +12,7 @@ public class ShootingMecha : MonoBehaviour
     private InputHandler input = null;
     private PlayerMovement player = null;
     [SerializeField] Transform gun = null;
-
+    [SerializeField] GameObject bullet = null;
     [Header("Shoot")]
     [SerializeField] int bulletCapacity = 3;
     [SerializeField] int bulletInMagasine = 3;
@@ -53,10 +53,11 @@ public class ShootingMecha : MonoBehaviour
                     bulletInMagasine--;
 
                     //Elle est crée
-                    //GameObject shootedBullet = Instantiate( bullet, shootingPos.position, Quaternion.identity);
+                    GameObject shootedBullet = Instantiate( bullet, gun.position + (gun.right * 0.5f), Quaternion.identity);
 
                     //Elle est partie
-                    //shootedBullet.direction = bulletDir;
+                    BulletBehavior shootedBulletBehav = shootedBullet.GetComponent<BulletBehavior>();
+                    shootedBulletBehav.SetShoot(bulletDir, recoilForce);
                 }
                 else
                 {

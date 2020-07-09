@@ -7,7 +7,6 @@ public class OrientGun : MonoBehaviour
     private InputHandler input = null;
     public float rotateSpeed = 5.0f;
     [SerializeField] float angleOffSet = 5.0f;
-    [SerializeField] Transform gun = null;
 
     private void Awake()
     {
@@ -30,6 +29,6 @@ public class OrientGun : MonoBehaviour
         float angle = Mathf.Atan2(distanceX, distanceY) * Mathf.Rad2Deg;
 
         Quaternion endRotation = Quaternion.AngleAxis(angle + angleOffSet, Vector3.back);
-        gun.rotation = Quaternion.Slerp(transform.rotation, endRotation, Time.deltaTime * rotateSpeed);
+        transform.rotation = Quaternion.Slerp(transform.rotation, endRotation, Time.deltaTime * rotateSpeed);
     }
 }
