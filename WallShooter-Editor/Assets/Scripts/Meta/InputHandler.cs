@@ -14,6 +14,7 @@ public class InputHandler : Singleton<InputHandler>
     public Vector2 mouvAxis = Vector2.zero;
     [Space(10)]
     public bool interact;
+    public bool jumpEnter;
     public bool jump;
 
     private void Update()
@@ -25,7 +26,8 @@ public class InputHandler : Singleton<InputHandler>
 
             //Je prends les buttons
             interact = Input.GetButtonDown("Fire3");
-            jump = Input.GetButtonDown("Fire1");
+            jumpEnter = Input.GetButtonDown("Fire1");
+            jump = Input.GetButton("Fire1");
         }
     }
 

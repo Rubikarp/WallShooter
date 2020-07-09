@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Player/Hurtbox
+  - Player/Bullet
   layers:
   - Default
   - TransparentFX
@@ -14,8 +16,8 @@ TagManager:
   - 
   - 
   - Enviro
-  - BulletProof
-  - BulletSensi
+  - Bullet
+  - 
   - 
   - 
   - 

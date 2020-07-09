@@ -14,16 +14,23 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask EnviroLayerMask;
     [Space(10)]
     public Vector2 Orientation;
-    private bool isOnGround;
+    [SerializeField] bool isOnGround;
     public bool IsOnGround
     {
         get { return isOnGround; }
     }
+    [SerializeField] bool isShooting;
+    public bool IsShooting
+    {
+        get { return isShooting; }
+        set { isShooting = value; }
+    }
 
     [Header("Run")]
     private float accTimer = 0f, decTimer = 0f;
-    [SerializeField] [Range(1, 15)] float maxSpeed = 12;
-    [SerializeField] [Range(1, 15)] float maxAirSpeed = 12;
+    [SerializeField] [Range(5, 25)] float maxRunSpeed = 12;
+    [SerializeField] [Range(5, 25)] float maxAirSpeed = 12;
+    [SerializeField] [Range(5, 25)] float maxSpeed = 12;
     [SerializeField] [Range(0, 5)] float inAirCoeff = 5;
     [SerializeField] [Range(0, 5)] float airFiction = 5;
     [SerializeField] AnimationCurve accelerationCurve = AnimationCurve.EaseInOut(0, 0, 0.2f, 1);
@@ -32,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Jump")]
     [SerializeField] [Range(1, 15)] float jumpForce = 15f;
     [Space(10)]
-    [SerializeField] [Range(0, 5)] float ascensionFactor = 2f;
+    [SerializeField] [Range(0, 5)] float normalFactor = 2f;
     [SerializeField] [Range(0, 5)] float fallFactor = 2f;
     [SerializeField] [Range(0, 5)] float lowJumpFactor = 2f;
 
@@ -53,22 +60,27 @@ public class PlayerMovement : MonoBehaviour
         PlayerOrientation();
     }
 
+    private void FixedUpdate()
+    {
+        SpeedLimitation();
+    }
     private void Update()
     {
         CheckGround();
         PlayerOrientation();
 
-        Run();
+        Run(maxRunSpeed);
         Jump();
     }
 
-    private void Run()
+
+    private void Run(float maxRunSpeed)
     {
         float activeSpeed = 0f;
         float inAirFactor = isOnGround ? 1f : inAirCoeff;
         float mouvMagnitude = input.mouvAxis.magnitude > 1 ? 1f : input.mouvAxis.magnitude;
 
-        if (input.mouvAxis.magnitude > 0.1 && isOnGround/* ne pas oublier */ )
+        if (input.mouvAxis.magnitude > 0.1)
         {
             //incrémentation du timer en fonction du temps
             accTimer += Time.deltaTime;
@@ -77,11 +89,11 @@ public class PlayerMovement : MonoBehaviour
 
             if (activeSpeed > 1)
             {
-                activeSpeed = maxSpeed * mouvMagnitude * inAirFactor;
+                activeSpeed = maxRunSpeed * mouvMagnitude * inAirFactor;
             }
             else
             {
-                activeSpeed = maxSpeed * mouvMagnitude * inAirFactor * accelerationCurve.Evaluate(accTimer);
+                activeSpeed = maxRunSpeed * mouvMagnitude * inAirFactor * accelerationCurve.Evaluate(accTimer);
             }
 
             if (isOnGround)
@@ -89,19 +101,20 @@ public class PlayerMovement : MonoBehaviour
                 //applique la vitesse
                 rgb.velocity = new Vector2(input.mouvAxis.x * activeSpeed, rgb.velocity.y);
             }
-            /*
             else
             {
-                if (Mathf.Abs(rgb.velocity.x) < maxAirSpeed)
+                if (!IsShooting)
                 {
-                    rgb.AddForce(Vector2.right * input.mouvAxis.x * activeSpeed, ForceMode2D.Force);
-                }
-                else
-                {
-                    rgb.velocity += (-Orientation) * airFiction * Time.deltaTime;
+                    if (Mathf.Abs(rgb.velocity.x + (input.mouvAxis.x * (maxAirSpeed * 0.9f))) < maxAirSpeed)
+                    {
+                        rgb.AddForce(Vector2.right * input.mouvAxis.x * activeSpeed, ForceMode2D.Force);
+                    }
+                    else
+                    {
+                        rgb.velocity += (-Orientation) * airFiction * Time.deltaTime;
+                    }
                 }
             }
-            */
 
             //Reset decceleration timer
             if (decTimer != 0)
@@ -115,20 +128,18 @@ public class PlayerMovement : MonoBehaviour
             decTimer += Time.deltaTime;
 
             //determine la vitesse
-            activeSpeed = maxSpeed * inAirFactor *deccelerationCurve.Evaluate(decTimer);
+            activeSpeed = maxRunSpeed * inAirFactor *deccelerationCurve.Evaluate(decTimer);
 
             if (isOnGround)
             {
                 //applique la vitesse
                 rgb.velocity = new Vector2(input.mouvAxis.x * activeSpeed, rgb.velocity.y);
             }
-            /*
             else
             {
                 if(rgb.velocity.x > 1)
                 rgb.velocity += (-Orientation) * airFiction * Time.deltaTime;
             }
-            */
 
             //Reset decceleration timer
             if (accTimer != 0)
@@ -141,9 +152,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        if (input.jump && isOnGround)
+        if (input.jumpEnter && isOnGround)
         {
-            rgb.velocity = new Vector2(rgb.velocity.x, jumpForce);
+            rgb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+
         }
 
         if (!isOnGround)
@@ -159,8 +171,16 @@ public class PlayerMovement : MonoBehaviour
             }
             else //retour à la normal
             {
-                rgb.gravityScale = ascensionFactor;
+                rgb.gravityScale = normalFactor;
             }
+        }
+    }
+
+    private void SpeedLimitation()
+    {
+        if( Mathf.Abs(rgb.velocity.magnitude) > maxSpeed)
+        {
+            rgb.velocity = rgb.velocity.normalized * maxSpeed;
         }
     }
 

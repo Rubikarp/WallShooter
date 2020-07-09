@@ -32,7 +32,7 @@ public class BulletBehavior : MonoBehaviour
 
     private void Update()
     {
-        if (rgb.velocity.magnitude > 1)
+        if (rgb.velocity.magnitude > 2)
         {
             FaceShootingDirection(rgb.velocity.normalized);
         }
