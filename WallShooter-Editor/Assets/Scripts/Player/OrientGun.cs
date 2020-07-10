@@ -7,7 +7,7 @@ public class OrientGun : MonoBehaviour
     private InputHandler input = null;
     public float rotateSpeed = 5.0f;
     [SerializeField] float angleOffSet = 5.0f;
-
+    [SerializeField] PlayerMovement player = null;
     private void Awake()
     {
         input = InputHandler.Instance;
@@ -16,10 +16,19 @@ public class OrientGun : MonoBehaviour
     private void Update()
     {
         Vector3 inputVect = input.mouvAxis.normalized * 3;
+
         if (input.mouvAxis.magnitude > 0)
         {
-            LookAt2D(transform.position + inputVect);
+            if (player.IsOnGround)
+            {
+                LookAt2D(transform.position + inputVect);
+            }
+            else
+            {
+                LookAt2D(transform.position - inputVect);
+            }
         }
+
     }
 
     void LookAt2D(Vector3 lookAtPosition)

@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask EnviroLayerMask;
     [Space(10)]
     public Vector2 Orientation;
+    public Vector2 Velocity;
     [SerializeField] bool isOnGround;
     public bool IsOnGround
     {
@@ -105,7 +106,11 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (!IsShooting)
                 {
-                    if (Mathf.Abs(rgb.velocity.x + (input.mouvAxis.x * (maxAirSpeed * 0.9f))) < maxAirSpeed)
+                    if (Mathf.Sign(rgb.velocity.x) != Mathf.Sign(input.mouvAxis.x))
+                    {
+                        rgb.AddForce(Vector2.right * input.mouvAxis.x * activeSpeed, ForceMode2D.Force);
+                    }
+                    else if (Mathf.Abs(rgb.velocity.x) < maxAirSpeed)
                     {
                         rgb.AddForce(Vector2.right * input.mouvAxis.x * activeSpeed, ForceMode2D.Force);
                     }
@@ -195,6 +200,8 @@ public class PlayerMovement : MonoBehaviour
         {
             Orientation = Vector2.right;
         }
+
+        Velocity = rgb.velocity;
     }
 
     private void CheckGround()
