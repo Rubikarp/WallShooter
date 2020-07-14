@@ -24,9 +24,12 @@ public class AnimationPlayer : MonoBehaviour
         float horizontalSpeed = Mathf.Abs(rgb.velocity.x);
         anim.SetFloat("horizontal", horizontalSpeed); 
         anim.SetFloat("vertical", rgb.velocity.y);
-      
+        //anim.SetFloat("gunX", gun.transform.position.x);
+        //anim.SetFloat("gunY", gun.transform.position.y);
+
         FlipOrientation();
         JumpAnim();
+        ShootAnim();
     }
 
     private void FlipOrientation()
@@ -52,7 +55,17 @@ public class AnimationPlayer : MonoBehaviour
             anim.SetBool("isJumping", true);
         }
     }
-
+    private void ShootAnim()
+    {
+        if (player.IsShooting == false)
+        {
+            anim.SetBool("isShooting", false);
+        }
+        if (player.IsShooting == true)
+        {
+            anim.SetBool("isShooting", true);
+        }
+    }
     private void GetAnimationEvent (string eventMessage)
     {
         if(eventMessage.Equals("EventMessage"))
