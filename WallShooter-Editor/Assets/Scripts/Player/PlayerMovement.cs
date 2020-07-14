@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rgb = null;
     private Collider2D collid = null;
     private InputHandler input = null;
-
+    private Animator anim = null;
     [Header("Variable")]
     public LayerMask EnviroLayerMask;
     [Space(10)]
@@ -49,6 +49,7 @@ public class PlayerMovement : MonoBehaviour
         input = InputHandler.Instance;
         rgb = this.gameObject.GetComponent<Rigidbody2D>();
         collid = this.gameObject.GetComponent<Collider2D>();
+        anim = this.gameObject.GetComponent<Animator>();
     }
 
     void Start()
@@ -59,6 +60,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         PlayerOrientation();
+        
     }
 
     private void FixedUpdate()
@@ -77,6 +79,17 @@ public class PlayerMovement : MonoBehaviour
 
     private void Run(float maxRunSpeed)
     {
+        anim.SetFloat("horizontal", rgb.velocity.x);
+        anim.SetFloat("vertical", rgb.velocity.y);
+        
+        if ( rgb.velocity.x == 0)
+        {
+            anim.SetBool("isMoving", false);
+        }
+        else
+        {
+            anim.SetBool("isMoving", true);
+        }
         float activeSpeed = 0f;
         float inAirFactor = isOnGround ? 1f : inAirCoeff;
         float mouvMagnitude = input.mouvAxis.magnitude > 1 ? 1f : input.mouvAxis.magnitude;
