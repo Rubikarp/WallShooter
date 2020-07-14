@@ -693,7 +693,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1134856165}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.67, y: 1, z: -10}
+  m_LocalPosition: {x: 1.98, y: 0.25, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 643477573}
@@ -939,6 +939,7 @@ GameObject:
   - component: {fileID: 1727028203}
   - component: {fileID: 1727028206}
   - component: {fileID: 1727028207}
+  - component: {fileID: 1727028208}
   m_Layer: 0
   m_Name: Avatar
   m_TagString: Player
@@ -954,7 +955,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1727028201}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.67, y: 1, z: 0}
+  m_LocalPosition: {x: 1.98, y: 0.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 130289563}
@@ -1038,8 +1039,9 @@ SpriteRenderer:
   m_SortingLayerID: -709759741
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 3f75f7532e8f9f5448b4ca148da27985, type: 3}
-  m_Color: {r: 0.16, g: 0.26666656, b: 0.8, a: 1}
+  m_Sprite: {fileID: 8477211890706435377, guid: 80f15b30e82e50847a18dfbf4cc642aa,
+    type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1147,6 +1149,25 @@ MonoBehaviour:
   shootStunDur: 0.35
   recoilForce: 12
   blankForce: 4
+--- !u!95 &1727028208
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1727028201}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 85d31713522b3bf48814911ee4a81630, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1952394628
 GameObject:
   m_ObjectHideFlags: 0
@@ -6404,7 +6425,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.2, g: 0.2, b: 0.2, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -6445,7 +6466,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2136900932}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.67, y: 1, z: -10}
+  m_LocalPosition: {x: 1.98, y: 0.25, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1297290892}

@@ -90,6 +90,7 @@ public class PlayerMovement : MonoBehaviour
         {
             anim.SetBool("isMoving", true);
         }
+
         float activeSpeed = 0f;
         float inAirFactor = isOnGround ? 1f : inAirCoeff;
         float mouvMagnitude = input.mouvAxis.magnitude > 1 ? 1f : input.mouvAxis.magnitude;
