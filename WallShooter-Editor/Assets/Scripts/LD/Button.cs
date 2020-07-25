@@ -1,28 +1,23 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class Button : MonoBehaviour, IInteractible
+public class Button : MonoBehaviour
 {
-    private bool isON = false;
-    public bool IsON
+    [SerializeField] private List<Mechanisme> mechanismes = new List<Mechanisme>();
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        get { return isON; }
-        set { isON = value; }
+        if (collision.CompareTag("Player/Bullet"))
+        {
+            Appuyer();
+        }
     }
 
-    public void Interact()
+    public void Appuyer()
     {
-
-    }
-
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
+        foreach (Mechanisme mecha in mechanismes)
+        {
+            mecha.Interact();
+        }
     }
 }
