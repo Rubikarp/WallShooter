@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(PlayerMovement))]
 
-public class ShootingMecha : MonoBehaviour
+public class ShootingMecha : Singleton<ShootingMecha>
 {
     [Header("Components")]
     private Rigidbody2D rgb = null;
@@ -17,7 +15,7 @@ public class ShootingMecha : MonoBehaviour
     [SerializeField] GameObject bullet = null;
 
     [Header("Shoot")]
-    [SerializeField] int bulletCapacity = 3;
+    public int bulletCapacity = 3;
     [SerializeField] int bulletInMagasine = 3;
     [SerializeField] bool canBlankShoot = true;
     [SerializeField] float blankShootCD = 0.3f;
