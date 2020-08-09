@@ -1,22 +1,19 @@
 fileFormatVersion: 2
-guid: 1175b7331de127c42869f6c6964a89aa
+guid: 7a06e60b74279e34ab0483677d4e5371
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -9179688987980250060
-    second: Altas_LittleProps_0
+      213: 1145886953139309942
+    second: Corruption_Tile2_SpriteSheet_0
   - first:
-      213: -852156599086062981
-    second: Altas_LittleProps_1
+      213: 2561018316384049410
+    second: Corruption_Tile2_SpriteSheet_1
   - first:
-      213: -2086458733594431926
-    second: Altas_LittleProps_2
+      213: -3293961701776377164
+    second: Corruption_Tile2_SpriteSheet_2
   - first:
-      213: -4012447441421286504
-    second: Altas_LittleProps_3
-  - first:
-      213: 4712223168234462974
-    second: Altas_LittleProps_4
+      213: -2192077569877195756
+    second: Corruption_Tile2_SpriteSheet_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -102,76 +99,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Altas_LittleProps_0
+      name: Corruption_Tile2_SpriteSheet_0
       rect:
         serializedVersion: 2
-        x: 9
-        y: 97
-        width: 18
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4344fd260813b9080800000000000000
-      internalID: -9179688987980250060
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Altas_LittleProps_1
-      rect:
-        serializedVersion: 2
-        x: 41
-        y: 97
-        width: 12
-        height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b72687a86188c24f0800000000000000
-      internalID: -852156599086062981
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Altas_LittleProps_2
-      rect:
-        serializedVersion: 2
-        x: 66
-        y: 101
-        width: 8
-        height: 14
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a4ea79916d86b03e0800000000000000
-      internalID: -2086458733594431926
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Altas_LittleProps_3
-      rect:
-        serializedVersion: 2
-        x: 83
-        y: 120
+        x: 0
+        y: 0
         width: 16
-        height: 8
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,20 +113,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 893c8269f4ce058c0800000000000000
-      internalID: -4012447441421286504
+      spriteID: 67d8f9adc1207ef00800000000000000
+      internalID: 1145886953139309942
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Altas_LittleProps_4
+      name: Corruption_Tile2_SpriteSheet_1
       rect:
         serializedVersion: 2
-        x: 89
-        y: 105
-        width: 6
-        height: 10
+        x: 16
+        y: 0
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -200,8 +134,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: efe1bfc410e256140800000000000000
-      internalID: 4712223168234462974
+      spriteID: 209175307909a8320800000000000000
+      internalID: 2561018316384049410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Corruption_Tile2_SpriteSheet_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4bab0edc84f7942d0800000000000000
+      internalID: -3293961701776377164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Corruption_Tile2_SpriteSheet_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4144e57701d2491e0800000000000000
+      internalID: -2192077569877195756
       vertices: []
       indices: 
       edges: []
