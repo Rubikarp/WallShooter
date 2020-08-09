@@ -23,11 +23,11 @@ public class Mechanisme : MonoBehaviour, IInteractible
 
     public void Activate()
     {
-        transform.DOMove(activatePos, 1f).SetEase(easeType);
+        transform.DOMove(activatePos, mecanDur).SetEase(easeType);
     }
     public void Desactivate()
     {
-        transform.DOMove(desactivatePos, 1f).SetEase(easeType);
+        transform.DOMove(desactivatePos, mecanDur).SetEase(easeType);
     }
 
 }

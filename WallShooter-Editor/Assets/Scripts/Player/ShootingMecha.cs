@@ -16,6 +16,8 @@ public class ShootingMecha : Singleton<ShootingMecha>
 
     [Header("Shoot")]
     public int bulletCapacity = 3;
+    [SerializeField] [Range(0, 10)] int sharpnelQuantity = 5;
+    [SerializeField] [Range(-90, 90)] float sharpnelSpread = 30f;
     [SerializeField] int bulletInMagasine = 3;
     [SerializeField] bool canBlankShoot = true;
     [SerializeField] float blankShootCD = 0.3f;
@@ -56,12 +58,8 @@ public class ShootingMecha : Singleton<ShootingMecha>
                     //moins une balle
                     bulletInMagasine--;
 
-                    //Elle est crée
-                    GameObject shootedBullet = Instantiate( bullet, gun.position + (gun.right * 0.5f), Quaternion.identity, bulletContainer);
-
-                    //Elle est partie
-                    BulletBehavior shootedBulletBehav = shootedBullet.GetComponent<BulletBehavior>();
-                    shootedBulletBehav.SetShoot(bulletDir, recoilForce);
+                    //boom boom les balles
+                    ShootShrapnel(bulletDir, recoilForce * 0.5f, sharpnelQuantity, sharpnelSpread);                    
 
                     Invoke("EndShoot", shootStunDur);
                 }
@@ -96,6 +94,36 @@ public class ShootingMecha : Singleton<ShootingMecha>
     private void EndShoot()
     {
         player.IsShooting = false;
+    }
+
+    private void ShootShrapnel(Vector2 shootDir, float shootStrength, int quantity, float angleVariance)
+    {
+        //First Bullet created
+        GameObject shootedBullet = Instantiate(bullet, gun.position + (gun.right * 0.5f), Quaternion.identity, bulletContainer);
+
+        //First Bullet have perfect speed and trajectory
+        BulletBehavior shootedBulletBehav = shootedBullet.GetComponent<BulletBehavior>();
+        shootedBulletBehav.SetShoot(shootDir, shootStrength);
+
+
+        for (int i = 0; i < quantity; i++)
+        {
+            //additional bullet
+            shootedBullet = Instantiate(bullet, gun.position + (gun.right * 0.5f), Quaternion.identity, bulletContainer);
+
+            //Random dir
+            float rdmAngle = -angleVariance + (i*((angleVariance*2)/quantity));
+            if(rdmAngle != 0)
+            {
+                rdmAngle *= Random.Range(-0.95f, -1.05f);
+            }
+            Vector2 rdmShootDir = Quaternion.Euler(0, 0, rdmAngle) * shootDir;
+            float rdmShootStrength = shootStrength * Random.Range(1f, 1.5f) ;
+
+            //Random speed and trajectory
+            shootedBulletBehav = shootedBullet.GetComponent<BulletBehavior>();
+            shootedBulletBehav.SetShoot(rdmShootDir, rdmShootStrength);
+        }
     }
 
     private void BlankReload()
